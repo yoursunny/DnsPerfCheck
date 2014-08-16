@@ -16,6 +16,9 @@ def options(opt):
 def configure(conf):
     conf.load('compiler_cxx')
 
+    conf.check_cxx(lib='rt', header_name='time.h', uselib_store='RT')
+    conf.check_cxx(lib='ldns', header_name='ldns/ldns.h', uselib_store='LDNS')
+
     conf.define('_GNU_SOURCE', 1)
     flags = ['-Wall', '-Werror', '-Wpointer-arith', '-fPIC', '-fno-exceptions', '-std=c++0x', '-fno-rtti']
     conf.env.append_unique('CXXFLAGS', flags)
@@ -29,6 +32,7 @@ def configure(conf):
 
     if conf.options.gtest:
         conf.env.GTEST = 1
+        conf.env.append_unique('CXXFLAGS', ['-DGTEST_HAS_PTHREAD=0'])
 
     if conf.options.markdown:
         conf.env.MARKDOWN = 1
@@ -41,6 +45,7 @@ def build(bld):
                                  excl=['**/*_test*.cpp']),
         includes='.',
         export_includes='.',
+        use='RT LDNS',
         )
 
     bld.program(target='dpc',
