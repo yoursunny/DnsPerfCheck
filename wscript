@@ -45,7 +45,7 @@ def configure(conf):
         conf.find_program('pandoc', var='PANDOC')
 
 def build(bld):
-    source_subdirs = ['dns', 'db']
+    source_subdirs = ['core', 'dns', 'db']
     bld.objects(target='objects',
         source=bld.path.ant_glob([subdir + '/*.cpp' for subdir in source_subdirs],
                                  excl=['**/*_test*.cpp']),
