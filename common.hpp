@@ -5,10 +5,11 @@
 #include <stddef.h>
 #include <unistd.h>
 
+#include <algorithm>
 #include <chrono>
-#include <memory>
 #include <functional>
 #include <list>
+#include <memory>
 #include <set>
 #include <vector>
 

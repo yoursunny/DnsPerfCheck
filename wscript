@@ -18,9 +18,15 @@ def configure(conf):
 
     conf.check_cxx(lib='rt', header_name='time.h', uselib_store='RT')
     conf.check_cxx(lib='ldns', header_name='ldns/ldns.h', uselib_store='LDNS')
+    conf.check_cxx(lib='mysqlclient', header_name='mysql_version.h',
+                   includes='/usr/include/mysql', export_includes='/usr/include/mysql',
+                   paths=['/usr/lib', '/usr/lib/i386-linux-gnu', '/usr/lib/x86_64-linux-gnu'],
+                   uselib_store='MYSQL')
+    conf.check_cxx(lib='mysqlpp', header_name='mysql++/mysql++.h',
+                   use='MYSQL', uselib_store='MYSQLPP')
 
     conf.define('_GNU_SOURCE', 1)
-    flags = ['-Wall', '-Werror', '-Wpointer-arith', '-fPIC', '-fno-exceptions', '-std=c++0x', '-fno-rtti']
+    flags = ['-Wall', '-Werror', '-Wpointer-arith', '-fPIC', '-std=c++0x']
     conf.env.append_unique('CXXFLAGS', flags)
 
     if conf.options.optimize:
@@ -39,13 +45,13 @@ def configure(conf):
         conf.find_program('pandoc', var='PANDOC')
 
 def build(bld):
-    source_subdirs = ['dns', 'store']
+    source_subdirs = ['dns', 'db']
     bld.objects(target='objects',
         source=bld.path.ant_glob([subdir + '/*.cpp' for subdir in source_subdirs],
                                  excl=['**/*_test*.cpp']),
         includes='.',
         export_includes='.',
-        use='RT LDNS',
+        use='RT LDNS MYSQL MYSQLPP',
         )
 
     bld.program(target='dpc',
