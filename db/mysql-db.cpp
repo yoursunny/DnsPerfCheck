@@ -24,7 +24,7 @@ MySqlDb::listDomains()
     domains.emplace_back();
     domains.back().id = static_cast<int>(row["ID"]);
     domains.back().name = static_cast<std::string>(row["name"]);
-    domains.back().enabled = static_cast<bool>(row["enabled"]);
+    domains.back().enabled = 0 != static_cast<int>(row["enabled"]);
   });
   return domains;
 }

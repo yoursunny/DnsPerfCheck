@@ -5,8 +5,8 @@
 namespace dpc {
 
 static std::mt19937 g_rng;
-static const char RANDOM_HOST_CHARS[] = "abcdefghijklmnopqrstuvwxyz0123456789";
-static std::uniform_int_distribution<size_t> g_charDist(0, sizeof(RANDOM_HOST_CHARS) - 1);
+static const std::string RANDOM_HOST_CHARS = "abcdefghijklmnopqrstuvwxyz0123456789";
+static std::uniform_int_distribution<size_t> g_charDist(0, RANDOM_HOST_CHARS.size() - 1);
 static const size_t MIN_LENGTH = 8;
 static const size_t MAX_LENGTH = 16;
 static std::uniform_int_distribution<size_t> g_lengthDist(MIN_LENGTH, MAX_LENGTH);

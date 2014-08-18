@@ -1,7 +1,7 @@
 CREATE TABLE domains (
   ID int NOT NULL AUTO_INCREMENT,
   name varchar(200) NOT NULL,
-  enabled bit(1) NOT NULL,
+  enabled tinyint NOT NULL,
   PRIMARY KEY (ID)
 );
 
@@ -12,7 +12,9 @@ ON domains (
 );
 
 INSERT INTO domains(name,enabled)
-VALUES ('google.com',    1),
+VALUES ('example.com',   0),
+       ('example.net',   0),
+       ('google.com',    1),
        ('facebook.com',  1),
        ('youtube.com',   1),
        ('yahoo.com',     1),

@@ -4,7 +4,7 @@
 
 namespace dpc {
 
-TEST(MySqlDbTest, Insert_Report) {
+TEST(MySqlDbTest, All) {
   mysqlpp::Connection conn("dpc_unittest", nullptr, "dpc_unittest", "I7HXycSbf");
   conn.query("DELETE FROM probelogs").execute();
 
@@ -13,6 +13,10 @@ TEST(MySqlDbTest, Insert_Report) {
   std::vector<Domain> domains;
   ASSERT_NO_THROW(domains = db.listDomains());
   ASSERT_GE(domains.size(), 2);
+  EXPECT_TRUE(std::any_of(domains.begin(), domains.end(),
+              [](const Domain& domain){ return domain.enabled; }));
+  EXPECT_TRUE(std::any_of(domains.begin(), domains.end(),
+              [](const Domain& domain){ return !domain.enabled; }));
 
   ProbeLog pl1;
   pl1.timestamp = std::chrono::system_clock::from_time_t(1408000000);
