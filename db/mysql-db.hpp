@@ -21,8 +21,11 @@ public:
   ~MySqlDb();
 
 public:
+  virtual std::vector<Domain>
+  listDomains();
+
   virtual void
-  insert(const Record& record);
+  insertProbeLog(const ProbeLog& record);
 
 private:
   mysqlpp::Connection& m_conn;

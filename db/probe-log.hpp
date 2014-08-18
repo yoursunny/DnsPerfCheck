@@ -1,5 +1,5 @@
-#ifndef DPC_DB_RECORD_HPP
-#define DPC_DB_RECORD_HPP
+#ifndef DPC_DB_PROBE_LOG_HPP
+#define DPC_DB_PROBE_LOG_HPP
 
 #include "common.hpp"
 
@@ -7,13 +7,13 @@ namespace dpc {
 
 /** \brief represents a query time record
  */
-struct Record
+struct ProbeLog
 {
   std::chrono::system_clock::time_point timestamp;
-  std::string domain;
+  int domainId;
   std::chrono::milliseconds queryTime;
 };
 
 } // namespace dpc
 
-#endif // DPC_DB_RECORD_HPP
+#endif // DPC_DB_PROBE_LOG_HPP

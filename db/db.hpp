@@ -1,7 +1,8 @@
 #ifndef DPC_DB_DB_HPP
 #define DPC_DB_DB_HPP
 
-#include "record.hpp"
+#include "domain.hpp"
+#include "probe-log.hpp"
 
 namespace dpc {
 
@@ -16,10 +17,11 @@ public:
   ~Db();
 
 public:
-  /** \brief insert record
-   */
+  virtual std::vector<Domain>
+  listDomains() = 0;
+
   virtual void
-  insert(const Record& record) = 0;
+  insertProbeLog(const ProbeLog& record) = 0;
 };
 
 } // namespace dpc
