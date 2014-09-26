@@ -1,5 +1,3 @@
-ThousandEyes C++ Coding Challenge
-
 # Tracking DNS performance to top sites
 
 This program periodically sends DNS queries for top domains, and benchmarks the round trip time for those queries.
@@ -43,8 +41,8 @@ This program is written in C++11, and developed on **Ubuntu Server 14.04 64-bit*
         ./waf configure --gtest --markdown
         ./waf
 
-    * `--gtest` (optional) compiles unit tests
-    * `--markdown` (optional) compiles Markdown documents into HTML (requires `pandoc`)
+    `--gtest` (optional) compiles unit tests  
+    `--markdown` (optional) compiles Markdown documents into HTML (requires `pandoc`)
 
 4. run unit testing (optional, requires `dpc_unittest` database)
 
@@ -58,10 +56,10 @@ This program is written in C++11, and developed on **Ubuntu Server 14.04 64-bit*
 
         build/dpc -D dpc -u dpc -p 4LCHLWIL -i 5
 
-    * `-D` specifies database name
-    * `-u` specifies database username
-    * `-p` specifies database password
-    * `-i` specifies query interval in seconds, minimum is 5 seconds
+    `-D` specifies database name  
+    `-u` specifies database username  
+    `-p` specifies database password  
+    `-i` specifies query interval in seconds, minimum is 5 seconds
 
     It's recommended to run the program within `screen` or `nohop`.
 
